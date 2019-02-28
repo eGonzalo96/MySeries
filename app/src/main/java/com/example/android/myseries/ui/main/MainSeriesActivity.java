@@ -24,7 +24,19 @@ public class MainSeriesActivity
         attachSeriesFragment();
 
         mSeriesSearchView = (SearchView) findViewById(R.id.mainSearchView);
-        
+        mSeriesSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(s.endsWith(" ")) {
+                    // TODO buscar series
+                }
+            }
+        });
     }
 
 
