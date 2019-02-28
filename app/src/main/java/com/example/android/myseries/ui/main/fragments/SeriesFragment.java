@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.myseries.R;
+import com.example.android.myseries.ui.main.SearchViewListener;
 
-public class SeriesFragment extends Fragment {
+public class SeriesFragment
+        extends Fragment implements SearchViewListener {
 
     RecyclerView mSeriesRecyclerView;
 
@@ -21,12 +23,21 @@ public class SeriesFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(
-                R.layout.dummy_layout, container, false);
+                R.layout.fragment_main_activity, container, false);
     }
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+
+        mSeriesRecyclerView =
+                (RecyclerView) view.findViewById(R.id.fragmentRecyclerView);
+    }
+
+
+    // From SearchViewListener
+    @Override
+    public void getSeriesList(String serieName) {
+
     }
 }

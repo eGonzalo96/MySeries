@@ -4,17 +4,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.myseries.R;
 import com.example.android.myseries.ui.main.fragments.SeriesFragment;
 
-public class MainSeriesActivity
-    extends AppCompatActivity {
+public class MainSeriesActivity extends AppCompatActivity {
 
     SearchView mSeriesSearchView;
+    SearchViewListener mSearchViewListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,10 @@ public class MainSeriesActivity
             @Override
             public boolean onQueryTextChange(String s) {
                 if(s.endsWith(" ")) {
-                    // TODO buscar series
+                    Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+                    //mSearchViewListener.getSeriesList(s);
                 }
+                return false;
             }
         });
     }
@@ -42,8 +42,11 @@ public class MainSeriesActivity
 
     private void attachSeriesFragment() {
         FragmentManager fm = getSupportFragmentManager();
+        SeriesFragment sf = new SeriesFragment();
         fm.beginTransaction()
-                .add(R.id.mainSeriesFragment, new SeriesFragment())
+                .add(R.id.mainSeriesFragment, sf)
                 .commitNow();
+
+        mSearchViewListener = (SearchViewListener) sf;
     }
 }
