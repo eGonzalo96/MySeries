@@ -2,8 +2,8 @@ package com.example.android.myseries.data.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Channel {
+public class Serie {
 
-    @SerializedName("name")
-    public String mName;
+    @SerializedName("show")
+    public Show mShow;
 }

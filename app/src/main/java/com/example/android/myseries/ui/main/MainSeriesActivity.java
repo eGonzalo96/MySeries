@@ -7,9 +7,11 @@ import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.android.myseries.R;
+import com.example.android.myseries.data.entities.Serie;
 import com.example.android.myseries.ui.main.fragments.SeriesFragment;
 
-public class MainSeriesActivity extends AppCompatActivity {
+public class MainSeriesActivity 
+        extends AppCompatActivity {
 
     SearchView mSeriesSearchView;
     SearchViewListener mSearchViewListener;
@@ -32,7 +34,7 @@ public class MainSeriesActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String s) {
                 if(s.endsWith(" ")) {
                     Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
-                    //mSearchViewListener.getSeriesList(s);
+                    mSearchViewListener.getSeriesList(s);
                 }
                 return false;
             }
@@ -48,5 +50,13 @@ public class MainSeriesActivity extends AppCompatActivity {
                 .commitNow();
 
         mSearchViewListener = (SearchViewListener) sf;
+        sf.setOnFragmentInteractionListener(
+                new SeriesFragment.OnFragmentInteractionListener() {
+                    @Override
+                    public void getSerieSpecification(Serie s) {
+                        Toast.makeText(getBaseContext(), s.mShow.mName, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 }

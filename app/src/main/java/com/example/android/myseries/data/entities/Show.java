@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Show {
 
-    @SerializedName("image")
-    public Images mImages;
-
     @SerializedName("id")
     public int mShowId;
 
@@ -24,6 +21,9 @@ public class Show {
 
     @SerializedName("network")
     public Channel mNetwork;
+
+    @SerializedName("image")
+    public Images mImages;
 
     @SerializedName("webChannel")
     public Channel mWebChannel;
