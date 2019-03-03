@@ -19,6 +19,7 @@ public class MainSeriesActivity
     SearchView mSeriesSearchView;
     SearchViewListener mSearchViewListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class MainSeriesActivity
     private void attachSeriesFragment() {
         FragmentManager fm = getSupportFragmentManager();
         SeriesFragment sf = new SeriesFragment();
+        sf.setScreenDimensions(getScreenSize());
         fm.beginTransaction()
                 .add(R.id.mainSeriesFragment, sf)
                 .commitNow();

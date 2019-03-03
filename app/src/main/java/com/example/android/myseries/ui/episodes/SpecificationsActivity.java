@@ -93,7 +93,8 @@ public class SpecificationsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(mSerie.mShow.mName);
         mSerieSummaryTextView.append(aux);
 
-        if(mSerie.mShow.mOfficialSite != null) {
+        if(mSerie.mShow.mOfficialSite != null
+                && !mSerie.mShow.mOfficialSite.equals("")) {
             mOfficialSiteTextView.append(mSerie.mShow.mOfficialSite);
 
             mOfficialSiteTextView.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +107,8 @@ public class SpecificationsActivity extends AppCompatActivity {
             mOfficialSiteTextView.append("Official Site Not Available");
         }
 
-        if(mSerie.mShow.mShedule.mDays != null) {
+        if(mSerie.mShow.mShedule.mDays != null
+                && mSerie.mShow.mShedule.mDays.size() > 0) {
 
             String newString = "";
 
@@ -119,19 +121,22 @@ public class SpecificationsActivity extends AppCompatActivity {
             mDayTextView.append("Days Information Not Available");
         }
 
-        if(mSerie.mShow.mShedule.mTime != null) {
+        if(mSerie.mShow.mShedule.mTime != null
+                && !mSerie.mShow.mShedule.mTime.equals("")) {
             mHoursTextView.append(mSerie.mShow.mShedule.mTime);
         } else {
             mHoursTextView.append("Hours Information Not Available");
         }
 
-        if(mSerie.mShow.mWebChannel.mName != null) {
-            mChainTextView.append(mSerie.mShow.mWebChannel.mName+", ");
+        if(mSerie.mShow.mWebChannel.mName != null
+                && !mSerie.mShow.mWebChannel.mName.equals("")) {
+            mChainTextView.append(mSerie.mShow.mWebChannel.mName + ", ");
         } else {
             mChainTextView.append("Web Channel Information Not Available, ");
         }
 
-        if(mSerie.mShow.mNetwork.mName != null) {
+        if(mSerie.mShow.mNetwork.mName != null
+                && !mSerie.mShow.mNetwork.mName.equals("")) {
             mChainTextView.append(mSerie.mShow.mNetwork.mName);
         } else {
             mChainTextView.append("Television Channel Information Not Available");

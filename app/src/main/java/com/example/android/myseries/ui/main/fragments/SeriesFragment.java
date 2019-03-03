@@ -1,5 +1,6 @@
 package com.example.android.myseries.ui.main.fragments;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ public class SeriesFragment
 
     SerieAdapter mSerieAdapter;
     RecyclerView mSeriesRecyclerView;
+    Point mScreenDimensions;
     OnFragmentInteractionListener mFragmentListener;
     SeriesModel mModel;
 
@@ -79,7 +81,7 @@ public class SeriesFragment
                                     public void getSerieFromItem(Serie s) {
                                         mFragmentListener.getSerieSpecification(s);
                                     }
-                                });
+                                }, mScreenDimensions);
                         mSeriesRecyclerView.setAdapter(mSerieAdapter);
                     }
 
@@ -90,4 +92,7 @@ public class SeriesFragment
                 });
     }
 
+    public void setScreenDimensions(Point d) {
+        this.mScreenDimensions = d;
+    }
 }

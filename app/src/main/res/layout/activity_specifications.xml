@@ -48,6 +48,7 @@
         <TextView
             android:id="@+id/episodeSerieOfficialSite"
             style="@style/SeriesInformation"
+            android:textColor="#2979ff"
             android:text="Official Site: " />
 
         <FrameLayout

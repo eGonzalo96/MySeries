@@ -1,5 +1,6 @@
 package com.example.android.myseries.ui.main.fragments.entities;
 
+import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,13 +18,17 @@ import java.util.ArrayList;
 public class SerieAdapter
     extends RecyclerView.Adapter<SerieAdapter.SerieViewHolder> {
 
-    ArrayList<Serie> mSeriesList;
-    OnSerieClickListener mListener;
+    private ArrayList<Serie> mSeriesList;
+    private OnSerieClickListener mListener;
+    private Point mScreenDimensions;
 
-    public SerieAdapter(ArrayList<Serie> list, OnSerieClickListener listener) {
+    public SerieAdapter(ArrayList<Serie> list,
+                        OnSerieClickListener listener,
+                        Point d) {
         super();
         mSeriesList = list;
         mListener = listener;
+        mScreenDimensions = d;
     }
 
 
@@ -75,6 +80,10 @@ public class SerieAdapter
         public void bind(int position) {
 
             final Serie i = mSeriesList.get(position);
+
+            serieImage.setMaxWidth(mScreenDimensions.x/3);
+            serieImage.setMaxHeight(
+                    mScreenDimensions.y * (2 * (mScreenDimensions.x/3)));
 
             if (i.mShow.mImages != null)
                 Picasso.with(rootView.getContext())

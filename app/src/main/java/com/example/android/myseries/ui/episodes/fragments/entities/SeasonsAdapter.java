@@ -81,9 +81,14 @@ public class SeasonsAdapter
                         .load(e.mEpisodesImages.mMediumImage)
                         .into(episodeImage);
 
-            String aux = e.mEpisodeSummary.replaceAll("\\<.*?>", "");
+            if(e.mEpisodeSummary != null
+                    && !e.mEpisodeSummary.equals("")) {
+                String aux = e.mEpisodeSummary.replaceAll("\\<.*?>", "");
+                episodeSummary.setText(aux);
+            } else {
+                episodeSummary.append(" Not Available");
+            }
 
-            episodeSummary.setText(aux);
             episodeName.setText(e.mEpisodeName);
             episodeNumber.setText("Episode " + Integer.toString(e.mEpisodeNumber));
 

@@ -92,7 +92,13 @@ public class SeasonsFragment extends Fragment {
         mSeasonsImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSeasonsMenu.show();
+                if(mNumberOfSeasons.size() > 1) {
+                    mSeasonsMenu.show();
+                } else {
+                    Toast.makeText(v.getContext(),
+                            "Only Season 1 Is Available",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
