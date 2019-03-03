@@ -1,5 +1,6 @@
 package com.example.android.myseries.ui.main;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,8 @@ import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.android.myseries.R;
-import com.example.android.myseries.data.entities.Serie;
+import com.example.android.myseries.data.series.entities.Serie;
+import com.example.android.myseries.ui.episodes.SpecificationsActivity;
 import com.example.android.myseries.ui.main.fragments.SeriesFragment;
 
 public class MainSeriesActivity 
@@ -55,6 +57,31 @@ public class MainSeriesActivity
                     @Override
                     public void getSerieSpecification(Serie s) {
                         Toast.makeText(getBaseContext(), s.mShow.mName, Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getBaseContext(), SpecificationsActivity.class);
+
+
+                        i.putExtra("id", Integer.toString(s.mShow.mShowId));
+                        i.putExtra("name", s.mShow.mName);
+                        i.putExtra("summary", s.mShow.mSummary);
+                        i.putExtra("officialSite", s.mShow.mOfficialSite);
+
+                        if(s.mShow.mNetwork != null)
+                            i.putExtra("network", s.mShow.mNetwork.mName);
+
+                        if(s.mShow.mImages != null) {
+                            i.putExtra("medium", s.mShow.mImages.mMediumImage);
+                            i.putExtra("original", s.mShow.mImages.mOriginalImage);
+                        }
+
+                        if(s.mShow.mWebChannel!= null)
+                            i.putExtra("webChannel", s.mShow.mWebChannel.mName);
+
+                        if(s.mShow.mShedule != null) {
+                            i.putExtra("time", s.mShow.mShedule.mTime);
+                            i.putExtra("days", s.mShow.mShedule.mDays);
+                        }
+
+                        startActivity(i);
                     }
                 }
         );

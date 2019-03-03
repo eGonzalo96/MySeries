@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.episodes.SpecificationsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/serieEpisodesImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/episodeSerieTitle"
+            style="@style/SeriesINformation"
+            android:textStyle="bold"
+            android:text="TITLE"/>
+
+        <TextView
+            android:id="@+id/episodeSerieSummary"
+            style="@style/SeriesINformation"
+            android:textStyle="italic"
+            android:text="SUMMARY"/>
+
+        <TextView
+            android:id="@+id/episodeSerieDays"
+            style="@style/SeriesINformation"
+            android:text="DAYS"/>
+
+        <TextView
+            android:id="@+id/episodeSerieHours"
+            style="@style/SeriesINformation"
+            android:text="HOURS"/>
+
+        <TextView
+            android:id="@+id/episodeSerieChain"
+            style="@style/SeriesINformation"
+            android:text="CHAIN"/>
+
+        <TextView
+            android:id="@+id/episodeSerieOfficialSite"
+            style="@style/SeriesINformation"
+            android:text="OFFICIALSITE"/>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

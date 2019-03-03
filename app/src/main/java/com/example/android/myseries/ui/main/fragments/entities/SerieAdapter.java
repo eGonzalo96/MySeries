@@ -7,17 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.myseries.R;
-import com.example.android.myseries.data.entities.Serie;
+import com.example.android.myseries.data.series.entities.Serie;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SerieAdapter
     extends RecyclerView.Adapter<SerieAdapter.SerieViewHolder> {

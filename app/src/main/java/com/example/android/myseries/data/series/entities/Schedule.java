@@ -1,4 +1,4 @@
-package com.example.android.myseries.data.entities;
+package com.example.android.myseries.data.series.entities;
 
 import com.google.gson.annotations.SerializedName;
 

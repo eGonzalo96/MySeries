@@ -1,4 +1,4 @@
-package com.example.android.myseries.data.entities;
+package com.example.android.myseries.data.series.entities;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -28,4 +28,10 @@ public class Show {
     @SerializedName("webChannel")
     public Channel mWebChannel;
 
+    public Show() {
+        mShedule = new Schedule();
+        mNetwork = new Channel();
+        mImages = new Images();
+        mWebChannel = new Channel();
+    }
 }

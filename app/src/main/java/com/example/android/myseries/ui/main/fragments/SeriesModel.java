@@ -2,8 +2,8 @@ package com.example.android.myseries.ui.main.fragments;
 
 import android.util.Log;
 
-import com.example.android.myseries.data.SeriesService;
-import com.example.android.myseries.data.entities.Serie;
+import com.example.android.myseries.data.series.SeriesService;
+import com.example.android.myseries.data.series.entities.Serie;
 
 import java.util.ArrayList;
 
