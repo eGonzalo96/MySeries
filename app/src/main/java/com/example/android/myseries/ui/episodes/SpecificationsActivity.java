@@ -90,6 +90,7 @@ public class SpecificationsActivity extends AppCompatActivity {
                 .into(mSerieImageView);
 
         mSerieNameTextView.append(mSerie.mShow.mName);
+        getSupportActionBar().setTitle(mSerie.mShow.mName);
         mSerieSummaryTextView.append(aux);
 
         if(mSerie.mShow.mOfficialSite != null) {

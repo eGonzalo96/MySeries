@@ -49,6 +49,11 @@ public class SeasonsAdapter
     }
 
 
+    public void setNewEpisodesList(ArrayList<Episode> e) {
+        this.mEpisodesList = e;
+        notifyDataSetChanged();
+    }
+
     public class SeasonsViewHolder extends RecyclerView.ViewHolder {
 
         View rootView;
@@ -69,9 +74,11 @@ public class SeasonsAdapter
 
         public void bind(Episode e) {
 
-            if(e.mEpisodesImages.mOriginalImage != null)
+            if(e.mEpisodesImages != null
+                    && e.mEpisodesImages.mMediumImage!= null
+                    && !e.mEpisodesImages.mMediumImage.equals(""))
                 Picasso.with(rootView.getContext())
-                        .load(e.mEpisodesImages.mOriginalImage)
+                        .load(e.mEpisodesImages.mMediumImage)
                         .into(episodeImage);
 
             String aux = e.mEpisodeSummary.replaceAll("\\<.*?>", "");

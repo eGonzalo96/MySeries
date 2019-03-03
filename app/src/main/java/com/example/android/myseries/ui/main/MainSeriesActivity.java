@@ -1,11 +1,12 @@
 package com.example.android.myseries.ui.main;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.widget.Toast;
+import android.view.Display;
 
 import com.example.android.myseries.R;
 import com.example.android.myseries.data.series.entities.Serie;
@@ -29,6 +30,7 @@ public class MainSeriesActivity
         mSeriesSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                mSearchViewListener.getSeriesList(s);
                 return false;
             }
 
@@ -40,6 +42,8 @@ public class MainSeriesActivity
                 return false;
             }
         });
+
+
     }
 
 
@@ -82,5 +86,13 @@ public class MainSeriesActivity
                     }
                 }
         );
+    }
+
+
+    private Point getScreenSize() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size;
     }
 }
