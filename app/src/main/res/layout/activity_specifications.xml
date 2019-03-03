@@ -20,37 +20,40 @@
 
         <TextView
             android:id="@+id/episodeSerieTitle"
-            style="@style/SeriesINformation"
-            android:textStyle="bold"
-            android:text="TITLE"/>
+            style="@style/SeriesInformation"
+            android:text="Title: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/episodeSerieSummary"
-            style="@style/SeriesINformation"
-            android:textStyle="italic"
-            android:text="SUMMARY"/>
+            style="@style/SeriesInformation"
+            android:text="Summary: "
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/episodeSerieDays"
-            style="@style/SeriesINformation"
-            android:text="DAYS"/>
+            style="@style/SeriesInformation"
+            android:text="Days: " />
 
         <TextView
             android:id="@+id/episodeSerieHours"
-            style="@style/SeriesINformation"
-            android:text="HOURS"/>
+            style="@style/SeriesInformation"
+            android:text="Hours: " />
 
         <TextView
             android:id="@+id/episodeSerieChain"
-            style="@style/SeriesINformation"
-            android:text="CHAIN"/>
+            style="@style/SeriesInformation"
+            android:text="Chain: " />
 
         <TextView
             android:id="@+id/episodeSerieOfficialSite"
-            style="@style/SeriesINformation"
-            android:text="OFFICIALSITE"/>
+            style="@style/SeriesInformation"
+            android:text="Official Site: " />
 
-
+        <FrameLayout
+            android:id="@+id/episodesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

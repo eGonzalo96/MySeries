@@ -2,8 +2,10 @@ package com.example.android.myseries.ui.episodes;
 
 import android.content.Intent;
 import android.media.Image;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import com.example.android.myseries.R;
 import com.example.android.myseries.data.series.entities.Images;
 import com.example.android.myseries.data.series.entities.Serie;
 import com.example.android.myseries.data.series.entities.Show;
+import com.example.android.myseries.ui.episodes.fragments.SeasonsFragment;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -35,8 +38,15 @@ public class SpecificationsActivity extends AppCompatActivity {
 
         getSerieFromIntent();
         initializeViewMembers();
-        atachInfoToLaoyut();
+        atachSerieInfoToLayout();
 
+
+        SeasonsFragment fragment = new SeasonsFragment();
+        fragment.setmEpisodeId(mSerie.mShow.mShowId);
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction()
+                .add(R.id.episodesFragment, fragment)
+                .commitNow();
     }
 
 
@@ -70,20 +80,24 @@ public class SpecificationsActivity extends AppCompatActivity {
     }
 
 
-    private void atachInfoToLaoyut() {
+    private void atachSerieInfoToLayout() {
 
         String aux = mSerie.mShow.mSummary.replaceAll("\\<.*?>", "");
 
         Picasso.with(getBaseContext())
                 .load(mSerie.mShow.mImages.mOriginalImage)
-                .error(R.drawable.ic_launcher_background)
                 .into(mSerieImageView);
 
-        mSerieNameTextView.setText(mSerie.mShow.mName);
-        mSerieSummaryTextView.setText(aux);
-        mOfficialSiteTextView.setText(mSerie.mShow.mOfficialSite);
+        mSerieNameTextView.append(mSerie.mShow.mName);
+        mSerieSummaryTextView.append(aux);
 
-        if(mSerie.mShow.mImages != null) {
+        if(mSerie.mShow.mOfficialSite != null) {
+            mOfficialSiteTextView.append(mSerie.mShow.mOfficialSite);
+        } else {
+            mOfficialSiteTextView.append("Official Site Not Available");
+        }
+
+        if(mSerie.mShow.mShedule.mDays != null) {
 
             String newString = "";
 
@@ -91,15 +105,28 @@ public class SpecificationsActivity extends AppCompatActivity {
                 newString += (i + " ");
             }
 
-            mDayTextView.setText(newString);
-            mHoursTextView.setText(mSerie.mShow.mShedule.mTime);
+            mDayTextView.append(newString);
         } else {
-            mDayTextView.setVisibility(View.GONE);
-            mHoursTextView.setVisibility(View.GONE);
+            mDayTextView.append("Days Information Not Available");
         }
 
-        mChainTextView.setText(mSerie.mShow.mWebChannel.mName);
+        if(mSerie.mShow.mShedule.mTime != null) {
+            mHoursTextView.append(mSerie.mShow.mShedule.mTime);
+        } else {
+            mHoursTextView.append("Hours Information Not Available");
+        }
 
+        if(mSerie.mShow.mWebChannel.mName != null) {
+            mChainTextView.append(mSerie.mShow.mWebChannel.mName+", ");
+        } else {
+            mChainTextView.append("Web Channel Information Not Available, ");
+        }
+
+        if(mSerie.mShow.mNetwork.mName != null) {
+            mChainTextView.append(mSerie.mShow.mNetwork.mName);
+        } else {
+            mChainTextView.append("Television Channel Information Not Available");
+        }
     }
 
 }

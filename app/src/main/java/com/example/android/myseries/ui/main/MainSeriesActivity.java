@@ -35,7 +35,6 @@ public class MainSeriesActivity
             @Override
             public boolean onQueryTextChange(String s) {
                 if(s.endsWith(" ")) {
-                    Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
                     mSearchViewListener.getSeriesList(s);
                 }
                 return false;
@@ -56,9 +55,7 @@ public class MainSeriesActivity
                 new SeriesFragment.OnFragmentInteractionListener() {
                     @Override
                     public void getSerieSpecification(Serie s) {
-                        Toast.makeText(getBaseContext(), s.mShow.mName, Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getBaseContext(), SpecificationsActivity.class);
-
 
                         i.putExtra("id", Integer.toString(s.mShow.mShowId));
                         i.putExtra("name", s.mShow.mName);
