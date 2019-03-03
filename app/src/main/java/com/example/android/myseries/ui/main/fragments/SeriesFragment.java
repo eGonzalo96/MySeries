@@ -22,7 +22,7 @@ public class SeriesFragment
 
     SerieAdapter mSerieAdapter;
     RecyclerView mSeriesRecyclerView;
-    OnFragmentInteractionListener mListener;
+    OnFragmentInteractionListener mFragmentListener;
     SeriesModel mModel;
 
     public interface OnFragmentInteractionListener {
@@ -37,7 +37,7 @@ public class SeriesFragment
 
     public void setOnFragmentInteractionListener
             (OnFragmentInteractionListener l) {
-        this.mListener = l;
+        this.mFragmentListener = l;
     }
 
 
@@ -77,7 +77,7 @@ public class SeriesFragment
                                 new SerieAdapter.OnSerieClickListener() {
                                     @Override
                                     public void getSerieFromItem(Serie s) {
-                                        mListener.getSerieSpecification(s);
+                                        mFragmentListener.getSerieSpecification(s);
                                     }
                                 });
                         mSeriesRecyclerView.setAdapter(mSerieAdapter);

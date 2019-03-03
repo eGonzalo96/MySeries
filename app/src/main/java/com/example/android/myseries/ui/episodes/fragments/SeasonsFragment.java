@@ -16,15 +16,17 @@ import android.widget.Toast;
 
 import com.example.android.myseries.R;
 import com.example.android.myseries.data.episodes.entities.Episode;
+import com.example.android.myseries.ui.episodes.fragments.entities.CustomLinearLayout;
+import com.example.android.myseries.ui.episodes.fragments.entities.SeasonsAdapter;
 
 import java.util.ArrayList;
 
 public class SeasonsFragment extends Fragment {
 
-    private ImageView mSeasonsImageView;
-    private RecyclerView mEpisodesRecycler;
-    private SeasonsModel mSeasonsModel;
-    private int mEpisodeId;
+    ImageView mSeasonsImageView;
+    RecyclerView mEpisodesRecycler;
+    SeasonsModel mSeasonsModel;
+    int mEpisodeId;
 
     @Nullable
     @Override
@@ -35,15 +37,33 @@ public class SeasonsFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         mSeasonsImageView = (ImageView) view.findViewById(R.id.seasonOptionButton);
         mEpisodesRecycler = (RecyclerView) view.findViewById(R.id.seasonsRecycler);
 
         mSeasonsModel = new SeasonsModel();
-        mEpisodesRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mEpisodesRecycler.setLayoutManager(new CustomLinearLayout(view.getContext()));
         setSeaonsOptionsListener(view.getContext());
-        //setAdapter()
         //setSeasonsMenu()
+
+        mSeasonsModel.getEpisodesFromServer(mEpisodeId,
+                new SeasonsModel.SeasonsModelListener() {
+                    @Override
+                    public void onSuccess(ArrayList<Episode> e) {
+
+                        Toast.makeText(view.getContext(), Integer.toString(e.size()), Toast.LENGTH_SHORT).show();
+                        mEpisodesRecycler.setAdapter(
+                                new SeasonsAdapter(e)
+                        );
+
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(view.getContext(), "fail: " + Integer.toString(mEpisodeId), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
 
@@ -51,19 +71,8 @@ public class SeasonsFragment extends Fragment {
         mSeasonsImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSeasonsModel.getEpisodesFromServer(mEpisodeId,
-                        new SeasonsModel.SeasonsModelListener() {
-                            @Override
-                            public void onSuccess(ArrayList<Episode> e) {
-                                
 
-                            }
 
-                            @Override
-                            public void onFailure(Throwable t) {
-                                Toast.makeText(c, "fail: " + Integer.toString(mEpisodeId), Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
         });
 

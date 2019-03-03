@@ -2,6 +2,7 @@ package com.example.android.myseries.ui.episodes;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -93,6 +94,13 @@ public class SpecificationsActivity extends AppCompatActivity {
 
         if(mSerie.mShow.mOfficialSite != null) {
             mOfficialSiteTextView.append(mSerie.mShow.mOfficialSite);
+
+            mOfficialSiteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToBrowser(mSerie.mShow.mOfficialSite);
+                }
+            });
         } else {
             mOfficialSiteTextView.append("Official Site Not Available");
         }
@@ -127,6 +135,13 @@ public class SpecificationsActivity extends AppCompatActivity {
         } else {
             mChainTextView.append("Television Channel Information Not Available");
         }
+    }
+
+
+    private void goToBrowser(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(url));
+        startActivity(i);
     }
 
 }
